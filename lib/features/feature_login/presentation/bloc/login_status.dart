@@ -2,6 +2,8 @@ import 'package:chapar_task/features/feature_login/domain/entities/user.dart';
 
 abstract class LoginStatus {}
 
+class LoginInitial extends LoginStatus {}
+
 class LoginLoading extends LoginStatus {}
 
 class LoginCompleted extends LoginStatus {

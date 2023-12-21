@@ -23,10 +23,7 @@ class LoginRepositoryImplementation extends LoginRepository{
         return const DataFailed(Constants.defaultError);
       }
   }catch(e){
-    return const DataFailed(Constants.connectionError);
+    
   }
   }
-
-  
-
 }

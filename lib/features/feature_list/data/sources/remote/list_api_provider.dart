@@ -13,6 +13,6 @@ class ListApiProvider {
         'Authorization': 'Bearer $token'
       }),
     );
-    return response;
+    return response.data;
   }
 }

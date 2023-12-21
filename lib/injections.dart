@@ -1,5 +1,5 @@
 import 'package:chapar_task/features/feature_login/data/repositories/login_repository_implementation.dart';
-import 'package:chapar_task/features/feature_login/data/sources/local/storage_provider.dart';
+import 'package:chapar_task/core/services/storage_service.dart';
 import 'package:chapar_task/features/feature_login/data/sources/remote/login_api_provider.dart';
 import 'package:chapar_task/features/feature_login/domain/repository/login_repository.dart';
 import 'package:chapar_task/features/feature_login/domain/usecases/login_usecase.dart';
@@ -12,7 +12,7 @@ GetIt locator = GetIt.I;
 initialize() async {
   //Data Providers
   locator.registerSingleton<LoginApiProvider>(LoginApiProvider());
-  locator.registerSingleton<StorageProvider>(StorageProvider());
+  locator.registerSingleton<StorageService>(StorageService());
 
   //Repositories
   locator.registerSingleton<LoginRepository>(LoginRepositoryImplementation(

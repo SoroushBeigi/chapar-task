@@ -14,16 +14,17 @@ class LoginRepositoryImplementation extends LoginRepository{
   Future<DataState<User>> login(LoginParams params) async{
     try{
       Response response = await apiProvider.login(params.email, params.password);
-      if(response.statusCode==200){
         User user = UserModel.fromJson(response.data, 200);
         return DataSuccess(user);
-      }else if(response.statusCode==401){
-        return const DataFailed(Constants.wrongCredentials);
-      }else{
-        return const DataFailed(Constants.defaultError);
-      }
-  }catch(e){
-    
+     
+  }on DioException catch(e){
+    if(e.response!.statusCode==401){
+      return const DataFailed(Constants.wrongCredentials);
+    }
+    return const DataFailed(Constants.defaultError);
+    // ... 
+    // More Dio exceptions can be added here, 
+    // But in our case these two are the only problems that can happen.
   }
   }
 }

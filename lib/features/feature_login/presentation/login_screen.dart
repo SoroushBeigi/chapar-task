@@ -4,6 +4,7 @@ import 'package:chapar_task/features/feature_login/presentation/bloc/login_statu
 import 'package:chapar_task/injections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -18,7 +19,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _LoginScreen extends StatefulWidget {
-  const _LoginScreen({super.key});
+  const _LoginScreen();
 
   @override
   State<_LoginScreen> createState() => _LoginScreenState();
@@ -28,18 +29,18 @@ class _LoginScreenState extends State<_LoginScreen> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
 
-  String email = '';
-  String password = '';
-
   @override
   void initState() {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _emailController.addListener(() {
-      BlocProvider.of<LoginBloc>(context).add(FieldChangedEvent(fieldType: FieldType.email,value: _emailController.text.trim()));
+      BlocProvider.of<LoginBloc>(context).add(FieldChangedEvent(
+          fieldType: FieldType.email, value: _emailController.text.trim()));
     });
     _passwordController.addListener(() {
-      BlocProvider.of<LoginBloc>(context).add(FieldChangedEvent(fieldType: FieldType.password,value: _passwordController.text.trim()));
+      BlocProvider.of<LoginBloc>(context).add(FieldChangedEvent(
+          fieldType: FieldType.password,
+          value: _passwordController.text.trim()));
     });
     super.initState();
   }
@@ -57,13 +58,22 @@ class _LoginScreenState extends State<_LoginScreen> {
     return Scaffold(
       body: Center(
           child: BlocConsumer<LoginBloc, LoginState>(
-            listenWhen: (previous, current) => previous.loginStatus!=current.loginStatus,
+        listenWhen: (previous, current) =>
+            previous.loginStatus != current.loginStatus,
         buildWhen: (previous, current) =>
-            previous.loginStatus != current.loginStatus || previous.canLogin != current.canLogin,
+            previous.loginStatus != current.loginStatus ||
+            previous.canLogin != current.canLogin,
         listener: (context, state) {
-          if(state.loginStatus is LoginError){
+          if (state.loginStatus is LoginError) {
             //Showing errors whenever the state's status changes to LoginError
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: Colors.red,content: Text((state.loginStatus as LoginError).error)));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Colors.red,
+                content: Text((state.loginStatus as LoginError).error)));
+          }
+
+          //Going to the next page, whenever the LoginCompleted status emitted
+          if (state.loginStatus is LoginCompleted) {
+            context.pushReplacement('/list');
           }
         },
         builder: (context, state) {
@@ -77,18 +87,20 @@ class _LoginScreenState extends State<_LoginScreen> {
               ),
               ElevatedButton(
                 //if canLogin is false, the ElevatedButton will be disabled until both fields are non-empty
-                onPressed:bloc.canLogin? () => bloc.add(
-                  LoginButtonEvent(
-                    loginParams: LoginParams(
-                        email: _emailController.text.trim(),
-                        password: _passwordController.text),
-                  ),
-                ) : null,
+                onPressed: bloc.canLogin
+                    ? () => bloc.add(
+                          LoginButtonEvent(
+                            loginParams: LoginParams(
+                                email: _emailController.text.trim(),
+                                password: _passwordController.text),
+                          ),
+                        )
+                    : null,
                 child: Builder(builder: (context) {
                   //Loading different widgets based on the state (loading or not!)
-                  if(state.loginStatus is LoginLoading){
+                  if (state.loginStatus is LoginLoading) {
                     return const CircularProgressIndicator();
-                  }else{
+                  } else {
                     return const Text('Login');
                   }
                 }),

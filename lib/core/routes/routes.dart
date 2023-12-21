@@ -3,7 +3,8 @@ import 'package:chapar_task/features/feature_login/presentation/login_screen.dar
 import 'package:go_router/go_router.dart';
 
 class Routes {
-  static final routes = GoRouter(
+  static routes(bool loggedIn){return GoRouter(
+    initialLocation: loggedIn?'/list':'/',
     routes: [
       GoRoute(
         path: '/',
@@ -14,5 +15,5 @@ class Routes {
         builder: (context, state) => const ListScreen(),
       ),
     ],
-  );
+  );}
 }

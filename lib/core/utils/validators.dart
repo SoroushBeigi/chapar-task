@@ -8,7 +8,8 @@ class Validator {
   }
 
   static bool isPasswordValid(String password) {
-    //We are not going to overengineer User's password here (for obvious UX reasons), so a basic length check is fine
+    //We are not going to overengineer User's password here (for obvious UX reasons),
+    //So a basic length check is fine
     return password.length >= 4;
   }
 }

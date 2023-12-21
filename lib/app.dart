@@ -2,7 +2,8 @@ import 'package:chapar_task/core/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  final bool loggedIn;
+  const App({required this.loggedIn,super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      routerConfig: Routes.routes,
+      routerConfig: Routes.routes(loggedIn),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:chapar_task/features/feature_login/data/repository/login_repository_implementation.dart';
+import 'package:chapar_task/features/feature_login/data/repositories/login_repository_implementation.dart';
 import 'package:chapar_task/features/feature_login/data/sources/local/storage_provider.dart';
 import 'package:chapar_task/features/feature_login/data/sources/remote/login_api_provider.dart';
 import 'package:chapar_task/features/feature_login/domain/repository/login_repository.dart';

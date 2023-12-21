@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:chapar_task/core/data_state.dart';
 import 'package:chapar_task/core/params/login_params.dart';
+import 'package:chapar_task/core/utils/constants.dart';
+import 'package:chapar_task/core/utils/validators.dart';
 import 'package:chapar_task/features/feature_login/domain/usecases/login_usecase.dart';
 import 'package:chapar_task/features/feature_login/presentation/bloc/login_status.dart';
 
@@ -23,13 +25,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   bool canLogin = false;
 
   Future<void> _login(LoginButtonEvent event, Emitter<LoginState> emit) async {
-    emit(state.copyWith(newStatus: LoginLoading()));
-    DataState dataState = await loginUsecase(event.loginParams);
-    if (dataState is DataSuccess) {
-      emit(state.copyWith(newStatus: LoginCompleted(user: dataState.data)));
+    if (!Validator.isEmailValid(email)) {
+      emit(
+          state.copyWith(newStatus: LoginError(error: Constants.invalidEmail)));
+    } else if (!Validator.isPasswordValid(password)) {
+      emit(state.copyWith(
+          newStatus: LoginError(error: Constants.shortPassword)));
     }
-    if (dataState is DataFailed) {
-      emit(state.copyWith(newStatus: LoginError(error: dataState.error!)));
+
+    //if both fields were validated in client, we can send them to the server
+    if (Validator.isEmailValid(email) && Validator.isPasswordValid(password)) {
+      emit(state.copyWith(newStatus: LoginLoading()));
+      DataState dataState = await loginUsecase(event.loginParams);
+      if (dataState is DataSuccess) {
+        emit(state.copyWith(newStatus: LoginCompleted(user: dataState.data)));
+      }
+      if (dataState is DataFailed) {
+        emit(state.copyWith(newStatus: LoginError(error: dataState.error!)));
+      }
     }
   }
 

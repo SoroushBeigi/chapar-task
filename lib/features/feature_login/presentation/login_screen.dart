@@ -57,6 +57,7 @@ class _LoginScreenState extends State<_LoginScreen> {
     return Scaffold(
       body: Center(
           child: BlocConsumer<LoginBloc, LoginState>(
+            listenWhen: (previous, current) => previous.loginStatus!=current.loginStatus,
         buildWhen: (previous, current) =>
             previous.loginStatus != current.loginStatus || previous.canLogin != current.canLogin,
         listener: (context, state) {

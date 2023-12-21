@@ -4,5 +4,7 @@ class Constants{
   static const String wrongCredentials = 'Wrong email or password!';
   static const String defaultError= 'Something went wrong!';
   static const String connectionError = 'Connection Error!';
+  static const String invalidEmail = 'Please enter a valid email';
+  static const String shortPassword= 'Password must be at least 4 characters long';
 
 }

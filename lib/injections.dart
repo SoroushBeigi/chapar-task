@@ -1,3 +1,7 @@
+import 'package:chapar_task/features/feature_list/data/repositories/list_repository_implementation.dart';
+import 'package:chapar_task/features/feature_list/domain/repository/list_repository.dart';
+import 'package:chapar_task/features/feature_list/domain/usecases/load_list_usecase.dart';
+import 'package:chapar_task/features/feature_list/presentation/bloc/list_bloc.dart';
 import 'package:chapar_task/features/feature_login/data/repositories/login_repository_implementation.dart';
 import 'package:chapar_task/core/services/storage_service.dart';
 import 'package:chapar_task/features/feature_login/data/sources/remote/login_api_provider.dart';
@@ -16,16 +20,25 @@ initialize() async {
 
   //Repositories
   locator.registerSingleton<LoginRepository>(LoginRepositoryImplementation(
-      apiProvider: locator(), storageProvider: locator()));
+      apiProvider: locator(), storageService: locator()));
+  locator.registerSingleton<ListRepository>(ListRepositoryImplementation(
+      apiProvider: locator(), storageService: locator()));
 
   //Usecases
   locator.registerSingleton<LoginUsecase>(
       LoginUsecase(loginRepository: locator()));
   locator.registerSingleton<SaveTokenUsecase>(
       SaveTokenUsecase(loginRepository: locator()));
+  locator.registerSingleton<LoadListUsecase>(
+      LoadListUsecase(listRepository: locator()));
 
   //Blocs
   locator.registerSingleton<LoginBloc>(
-    LoginBloc(loginUsecase: locator(),saveTokenUsecase: locator()),
+    LoginBloc(loginUsecase: locator(), saveTokenUsecase: locator()),
+  );
+  locator.registerSingleton<ListBloc>(
+    ListBloc(
+      loadListUsecase: locator(),
+    ),
   );
 }

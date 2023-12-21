@@ -5,15 +5,15 @@ import 'package:chapar_task/features/feature_list/domain/repository/list_reposit
 import 'package:chapar_task/core/services/storage_service.dart';
 
 class ListRepositoryImplementation extends ListRepository{
-  final ListApiProvider listApiProvider;
+  final ListApiProvider apiProvider;
   final StorageService storageService;
-  ListRepositoryImplementation({required this.listApiProvider,required this.storageService});
+  ListRepositoryImplementation({required this.apiProvider,required this.storageService});
   
   @override
   Future<DataState<List<Delivery>>> loadList() async {
     String? token = await storageService.readToken();
     if(token!=null){
-    final response = await listApiProvider.loadList(token);
+    final response = await apiProvider.loadList(token);
     final List<Map<String,dynamic>> data = response['data'];
     print(data[0]['id']);
     return DataSuccess([]);

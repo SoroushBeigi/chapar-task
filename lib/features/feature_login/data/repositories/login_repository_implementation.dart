@@ -10,8 +10,8 @@ import 'package:dio/dio.dart';
 
 class LoginRepositoryImplementation extends LoginRepository{
   final LoginApiProvider apiProvider;
-  final StorageService storageProvider;
-  LoginRepositoryImplementation({required this.apiProvider,required this.storageProvider});
+  final StorageService storageService;
+  LoginRepositoryImplementation({required this.apiProvider,required this.storageService});
 
   @override
   Future<DataState<User>> login(LoginParams params) async{
@@ -34,7 +34,7 @@ class LoginRepositoryImplementation extends LoginRepository{
   @override
   Future<DataState<String>> saveToken(String? param)async {
     if(param!=null){
-      storageProvider.saveToken(param);
+      storageService.saveToken(param);
       return const DataSuccess('Saved');
     }
     return const DataFailed('No token found!');

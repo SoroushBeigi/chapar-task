@@ -1,4 +1,7 @@
 part of 'login_bloc.dart';
 
 @immutable
-sealed class LoginEvent {}
+class LoginEvent {
+  final LoginParams loginParams;
+  const LoginEvent({required this.loginParams});
+}

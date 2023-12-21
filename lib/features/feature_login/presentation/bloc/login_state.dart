@@ -1,6 +1,13 @@
 part of 'login_bloc.dart';
 
 @immutable
-sealed class LoginState {}
+class LoginState {
+  final LoginStatus loginStatus;
+  const LoginState({required this.loginStatus});
 
-final class LoginInitial extends LoginState {}
+  LoginState copyWith({LoginStatus? newStatus}) {
+    return LoginState(
+      loginStatus: newStatus ?? loginStatus,
+    );
+  }
+}

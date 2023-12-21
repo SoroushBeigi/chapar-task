@@ -12,5 +12,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<void> _login(LoginEvent event, Emitter<LoginState> emit)async {
+    
   }
 }

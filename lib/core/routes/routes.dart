@@ -1,5 +1,5 @@
-import 'package:chapar_task/features/feature_list/presentation/list_screen.dart';
-import 'package:chapar_task/features/feature_login/presentation/login_screen.dart';
+import 'package:chapar_task/features/feature_list/presentation/screens/list_screen.dart';
+import 'package:chapar_task/features/feature_login/presentation/screens/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class Routes {

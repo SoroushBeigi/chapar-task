@@ -64,7 +64,7 @@ class _ListScreenState extends State<_ListScreen> {
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.5),
-                  borderRadius: BorderRadius.all(Radius.circular(30))),
+                  borderRadius: const BorderRadius.all(Radius.circular(30))),
               child: ListView.builder(
                 padding: EdgeInsets.fromLTRB(3.w, 5.w, 5.w, 5.w),
                 shrinkWrap: true,

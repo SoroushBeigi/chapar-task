@@ -37,6 +37,7 @@ class _ListScreenState extends State<_ListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //TODO: darker color
       appBar: AppBar(
           title: const Align(
               alignment: Alignment.centerRight,

@@ -34,6 +34,7 @@ class _DeliveryScreenState extends State<_DeliveryScreen> {
     final delivery = widget.delivery;
     final textTheme = AppTheme.lightTheme.textTheme;
     final isFemale = delivery.receiver!.gender == 'f';
+    final bloc = BlocProvider.of<DeliveryBloc>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppTheme.lightTheme.primaryColorDark,
@@ -110,14 +111,15 @@ class _DeliveryScreenState extends State<_DeliveryScreen> {
                         SizedBox(
                           width: 30.w,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => bloc.add(CallEvent(phoneNumber: delivery.receiver!.mobile!)),
                             child: const Text(Constants.callButton),
                           ),
                         ),
                         SizedBox(
                           width: 30.w,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            //We don't have lat and lang in API, so I use mock data here.
+                            onPressed: () => bloc.add(NavigationEvent(lat: 35.70884,long: 51.21253)),
                             child: const Text(Constants.navigationButton),
                           ),
                         ),

@@ -10,5 +10,6 @@ class Constants{
   static const String unknown = 'Unkown';
   static const String unknownAddress = 'Unkown Address!';
   static const String cantLoad = 'Could not load the data. Please try again!';
+  static const String listAppBar = 'فهرست مرسوله‌ها';
 
 }

@@ -20,9 +20,9 @@ class Tile extends StatelessWidget {
         contentPadding: EdgeInsets.all(2.w),
         splashColor: Colors.white,
         onTap: ()=>context.push('/delivery',extra: delivery),
-        title: Text(delivery.receiver!.fullName ?? Constants.unknown),
+        title: Text(delivery.receiver!.fullName ?? Constants.unknown,style: AppTheme.lightTheme.textTheme.headlineMedium,),
         subtitle: Text(
-            delivery.receiverAddress!.fullAddress ?? Constants.unknownAddress),
+            delivery.receiverAddress!.fullAddress ?? Constants.unknownAddress,textAlign: TextAlign.justify,),
         leading: isCod
             ? Icon(
                 Icons.money,
@@ -37,6 +37,7 @@ class Tile extends StatelessWidget {
                 .add(CallEvent(phoneNumber: delivery.receiver!.mobile!)),
             icon: Icon(
               Icons.call,
+              size: 8.w,
               color: AppTheme.lightTheme.primaryColorDark,
             )),
       ),

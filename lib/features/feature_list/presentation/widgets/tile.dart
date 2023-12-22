@@ -19,7 +19,7 @@ class Tile extends StatelessWidget {
       child: ListTile( 
         contentPadding: EdgeInsets.all(2.w),
         splashColor: Colors.white,
-        onTap: ()=>context.push('/delivery',extra: delivery.receiver!.fullName),
+        onTap: ()=>context.push('/delivery',extra: delivery),
         title: Text(delivery.receiver!.fullName ?? Constants.unknown),
         subtitle: Text(
             delivery.receiverAddress!.fullAddress ?? Constants.unknownAddress),

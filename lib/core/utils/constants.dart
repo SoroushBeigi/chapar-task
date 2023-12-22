@@ -11,5 +11,11 @@ class Constants{
   static const String unknownAddress = 'Unkown Address!';
   static const String cantLoad = 'Could not load the data. Please try again!';
   static const String listAppBar = 'فهرست مرسوله‌ها';
+  static const String isCodMessage= 'هزینه را نقدی دریافت کنید';
+  static const String isNotCodMessage= 'هزینه‌ای دریافت نکنید';
+  static const String male= 'مذکر';
+  static const String female= 'مونث';
+  static const String callButton= 'تماس';
+  static const String navigationButton= 'مسیریابی';
 
 }

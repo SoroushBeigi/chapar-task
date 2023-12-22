@@ -7,7 +7,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PinCard extends StatelessWidget {
   final TextEditingController controller;
-  const PinCard({required this.controller,super.key});
+  const PinCard({required this.controller, super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,8 +23,11 @@ class PinCard extends StatelessWidget {
           SizedBox(
             width: 30.w,
             child: ElevatedButton(
-                onPressed: ()=> context.pop(),
-                child: const Text(Constants.submitCodeButton)),
+                onPressed: () => context.pop(),
+                child: Text(
+                  Constants.submitCodeButton,
+                  style: AppTheme.lightTheme.textTheme.displaySmall,
+                )),
           )
         ],
       ),

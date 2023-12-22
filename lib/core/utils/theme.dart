@@ -18,8 +18,14 @@ class AppTheme {
         fontSize: 17.sp,
         fontFamily: 'Vazir',
       ),
+       displaySmall: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 16.5.sp,
+        fontFamily: 'Vazir',
+        color: Colors.white
+      ),
       titleLarge: TextStyle(
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         fontSize: 18.sp,
         color: Colors.white,
         fontFamily: 'Vazir',

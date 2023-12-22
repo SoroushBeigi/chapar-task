@@ -8,11 +8,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class FunctionsCard extends StatelessWidget {
   final String phoneNumber;
   final bool isCod;
-  const FunctionsCard({required this.phoneNumber,required this.isCod, super.key});
+  const FunctionsCard(
+      {required this.phoneNumber, required this.isCod, super.key});
 
   @override
   Widget build(BuildContext context) {
-    
     final bloc = BlocProvider.of<DeliveryBloc>(context);
     return Container(
       width: 80.w,
@@ -23,9 +23,7 @@ class FunctionsCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            isCod
-                ? Constants.isCodMessage
-                : Constants.isNotCodMessage,
+            isCod ? Constants.isCodMessage : Constants.isNotCodMessage,
             textDirection: TextDirection.rtl,
             textAlign: TextAlign.center,
             style: AppTheme.lightTheme.textTheme.bodyLarge,
@@ -38,7 +36,10 @@ class FunctionsCard extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () =>
                       bloc.add(CallEvent(phoneNumber: phoneNumber)),
-                  child: const Text(Constants.callButton),
+                  child: Text(
+                    Constants.callButton,
+                    style: AppTheme.lightTheme.textTheme.displaySmall,
+                  ),
                 ),
               ),
               SizedBox(
@@ -47,7 +48,10 @@ class FunctionsCard extends StatelessWidget {
                   //We don't have lat and lang in API, so I use mock data here.
                   onPressed: () =>
                       bloc.add(NavigationEvent(lat: 35.70884, long: 51.21253)),
-                  child: const Text(Constants.navigationButton),
+                  child: Text(
+                    Constants.navigationButton,
+                    style: AppTheme.lightTheme.textTheme.displaySmall,
+                  ),
                 ),
               ),
             ],

@@ -1,3 +1,4 @@
+import 'package:chapar_task/core/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -16,14 +17,17 @@ class Field extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 7.5.h,
+      height: 8.h,
       child: TextField(
+        style: TextStyle(fontSize: 19.sp),
         obscureText: isObscure,
         controller: controller,
         decoration: InputDecoration(
           fillColor: Colors.red,
           prefixIcon: Icon(prefixIconData),
           hintText: hint,
+          hintStyle: AppTheme.hintStyle,
+          hintTextDirection: TextDirection.rtl,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),

@@ -1,3 +1,4 @@
+import 'package:chapar_task/core/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 //This is just an example, only error and normal snackbars are used in this task
@@ -14,5 +15,5 @@ customSnackBar({SnackbarType? type,required String text}){
     } else {
       snackBarColor = Colors.blueGrey;
     }
-  return SnackBar(content: Text(text),backgroundColor: snackBarColor,duration: const Duration(milliseconds: 1500),);
+  return SnackBar(content: Text(text,textDirection: TextDirection.rtl,style: AppTheme.lightTheme.textTheme.displaySmall,),backgroundColor: snackBarColor,duration: const Duration(milliseconds: 1500),);
 }

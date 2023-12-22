@@ -1,4 +1,5 @@
 import 'package:chapar_task/core/utils/constants.dart';
+import 'package:chapar_task/core/utils/persian_numbers.dart';
 import 'package:chapar_task/core/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -11,6 +12,7 @@ class DetailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final persianPhoneNumber = PersianNumbers.convertEnToFa(phoneNumber); 
     return Container(
         width: 80.w,
         decoration: AppTheme.boxDecoration,
@@ -41,7 +43,7 @@ class DetailCard extends StatelessWidget {
                       Icons.phone,
                       color: Colors.blue,
                     ),
-                    Text(phoneNumber)
+                    Text(persianPhoneNumber)
                   ],
                 )
               ],

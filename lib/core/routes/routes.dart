@@ -16,8 +16,8 @@ class Routes {
         builder: (context, state) => const ListScreen(),
       ),
       GoRoute(
-        path: '/list/delivery',
-        builder: (context, state) => const DeliveryScreen(),
+        path: '/delivery',
+        builder: (context, state) => DeliveryScreen(title: state.extra as String),
       ),
     ],
   );}

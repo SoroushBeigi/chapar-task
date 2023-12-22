@@ -17,5 +17,8 @@ class Constants{
   static const String female= 'مونث';
   static const String callButton= 'تماس';
   static const String navigationButton= 'مسیریابی';
+  static const String codeInputText= 'کد دریافت شده از مشتری را وارد کنید';
+  static const String submitCodeButton= 'تایید';
+  static const String invalidCode = 'کد نادرست است';
 
 }

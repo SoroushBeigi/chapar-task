@@ -4,18 +4,12 @@ import 'package:chapar_task/features/feature_list/domain/entities/delivery.dart'
 
 class DeliveryModel extends Delivery {
   DeliveryModel({
-    int? id,
-    String? status,
-    bool? isCod,
-    Receiver? receiver,
-    ReceiverAddress? receiverAddress,
-  }) : super(
-          id: id,
-          status: status,
-          isCod: isCod,
-          receiver: receiver,
-          receiverAddress: receiverAddress,
-        );
+    super.id,
+    super.status,
+    super.isCod,
+    super.receiver,
+    super.receiverAddress,
+  });
 
   factory DeliveryModel.fromJson(Map<String, dynamic> json) {
     return DeliveryModel(

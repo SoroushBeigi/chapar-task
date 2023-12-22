@@ -14,5 +14,8 @@ class ListBloc extends Bloc<ListEvent, ListState> {
     on<LoadListEvent>(_loadList);
   }
 
-  Future<void> _loadList(LoadListEvent event, Emitter<ListState> emit) async {}
+  Future<void> _loadList(LoadListEvent event, Emitter<ListState> emit) async {
+    final dataState = await loadListUsecase(null);
+    
+  }
 }

@@ -18,7 +18,7 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   ListBloc({required this.loadListUsecase})
       : super(ListState(listStatus: ListLoading())) {
     on<LoadListEvent>(_loadList);
-    // on<CallEvent>(_call);
+    on<CallEvent>(_call);
   }
 
   List<Delivery> deliveryList = [];
@@ -34,5 +34,20 @@ class ListBloc extends Bloc<ListEvent, ListState> {
     }
   }
 
-
+  Future<void> _call(CallEvent event, Emitter<ListState> emit) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: event.phoneNumber,
+    );
+    print('hi');
+    bool canCall = await canLaunchUrl(launchUri);
+    print(canCall);
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
+      print('launch');
+    } else {
+      throw 'Could not call ${event.phoneNumber}';
+    }
+    print('done');
+  }
 }

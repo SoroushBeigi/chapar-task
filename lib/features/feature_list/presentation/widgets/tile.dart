@@ -13,12 +13,14 @@ class Tile extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: ListTile(
-        onTap: () => BlocProvider.of<ListBloc>(context)
-            .add(CallEvent(phoneNumber: delivery.receiver!.mobile!)),
+        onTap: () {},
         title: Text(delivery.receiver!.fullName ?? Constants.unknown),
         subtitle: Text(
             delivery.receiverAddress!.fullAddress ?? Constants.unknownAddress),
-        trailing: IconButton(onPressed: () {}, icon: const Icon(Icons.call)),
+        trailing: IconButton(
+            onPressed: () => BlocProvider.of<ListBloc>(context)
+                .add(CallEvent(phoneNumber: delivery.receiver!.mobile!)),
+            icon: const Icon(Icons.call)),
       ),
     );
   }

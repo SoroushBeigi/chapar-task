@@ -1,4 +1,5 @@
 import 'package:chapar_task/core/utils/constants.dart';
+import 'package:chapar_task/core/utils/theme.dart';
 import 'package:chapar_task/features/feature_list/presentation/bloc/list_bloc.dart';
 import 'package:chapar_task/features/feature_list/presentation/bloc/list_status.dart';
 import 'package:chapar_task/features/feature_list/presentation/widgets/tile.dart';
@@ -45,8 +46,10 @@ class _ListScreenState extends State<_ListScreen> {
             previous.listStatus != current.listStatus,
         builder: (context, state) {
           if (state.listStatus is ListLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppTheme.lightTheme.primaryIconTheme.color,
+              ),
             );
           }
           if (state.listStatus is ListError) {

@@ -39,15 +39,11 @@ class ListBloc extends Bloc<ListEvent, ListState> {
       scheme: 'tel',
       path: event.phoneNumber,
     );
-    print('hi');
     bool canCall = await canLaunchUrl(launchUri);
-    print(canCall);
-    if (await canLaunchUrl(launchUri)) {
+    if (canCall) {
       await launchUrl(launchUri);
-      print('launch');
     } else {
       throw 'Could not call ${event.phoneNumber}';
     }
-    print('done');
   }
 }

@@ -10,7 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) => MaterialApp.router(
-        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         routerConfig: Routes.routes(loggedIn),
       ),

@@ -1,3 +1,5 @@
+import 'package:chapar_task/features/feature_delivery/presentation/screens/delivery_screen.dart';
+import 'package:chapar_task/features/feature_list/domain/entities/delivery.dart';
 import 'package:chapar_task/features/feature_list/presentation/screens/list_screen.dart';
 import 'package:chapar_task/features/feature_login/presentation/screens/login_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +15,10 @@ class Routes {
       GoRoute(
         path: '/list',
         builder: (context, state) => const ListScreen(),
+      ),
+      GoRoute(
+        path: '/delivery',
+        builder: (context, state) => DeliveryScreen(delivery: state.extra as Delivery),
       ),
     ],
   );}

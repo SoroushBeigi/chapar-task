@@ -4,6 +4,7 @@ import 'package:chapar_task/features/feature_list/domain/entities/delivery.dart'
 import 'package:chapar_task/features/feature_list/presentation/bloc/list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Tile extends StatelessWidget {
@@ -18,7 +19,7 @@ class Tile extends StatelessWidget {
       child: ListTile( 
         contentPadding: EdgeInsets.all(2.w),
         splashColor: Colors.white,
-        onTap: () {},
+        onTap: ()=>context.push('/delivery',extra: delivery),
         title: Text(delivery.receiver!.fullName ?? Constants.unknown),
         subtitle: Text(
             delivery.receiverAddress!.fullAddress ?? Constants.unknownAddress),

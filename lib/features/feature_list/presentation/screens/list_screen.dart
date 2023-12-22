@@ -38,46 +38,47 @@ class _ListScreenState extends State<_ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppTheme.lightTheme.primaryColorDark,
           title: const Align(
               alignment: Alignment.centerRight,
               child: Text(Constants.listAppBar))),
-      body: BlocBuilder<ListBloc, ListState>(
-        buildWhen: (previous, current) =>
-            previous.listStatus != current.listStatus,
-        builder: (context, state) {
-          if (state.listStatus is ListLoading) {
-            return Center(
-              child: CircularProgressIndicator(
-                color: AppTheme.lightTheme.primaryIconTheme.color,
+      body: SafeArea(
+        child: BlocBuilder<ListBloc, ListState>(
+          buildWhen: (previous, current) =>
+              previous.listStatus != current.listStatus,
+          builder: (context, state) {
+            if (state.listStatus is ListLoading) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: AppTheme.lightTheme.primaryIconTheme.color,
+                ),
+              );
+            }
+            if (state.listStatus is ListError) {
+              return Center(
+                child: Text((state.listStatus as ListError).error),
+              );
+            }
+            //ListView works better with limited, small data but I'm using ListView.builder here,
+            //Assuming that the data can potentially grow
+            return Padding(
+              padding: EdgeInsets.all(5.w),
+              child: Container(
+                decoration: AppTheme.boxDecoration,
+                child: ListView.builder(
+                  padding: EdgeInsets.fromLTRB(3.w, 5.w, 5.w, 5.w),
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  itemCount:
+                      BlocProvider.of<ListBloc>(context).deliveryList.length,
+                  itemBuilder: (context, index) => Tile(
+                      delivery: (state.listStatus as ListCompleted)
+                          .deliveryList[index]),
+                ),
               ),
             );
-          }
-          if (state.listStatus is ListError) {
-            return Center(
-              child: Text((state.listStatus as ListError).error),
-            );
-          }
-          //ListView works better with limited, small data but I'm using ListView.builder here,
-          //Assuming that the data can potentially grow
-          return Padding(
-            padding: EdgeInsets.all(5.w),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.5),
-                  borderRadius: const BorderRadius.all(Radius.circular(30))),
-              child: ListView.builder(
-                padding: EdgeInsets.fromLTRB(3.w, 5.w, 5.w, 5.w),
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                itemCount:
-                    BlocProvider.of<ListBloc>(context).deliveryList.length,
-                itemBuilder: (context, index) => Tile(
-                    delivery: (state.listStatus as ListCompleted)
-                        .deliveryList[index]),
-              ),
-            ),
-          );
-        },
+          },
+        ),
       ),
     );
   }

@@ -20,5 +20,8 @@ class Constants{
   static const String codeInputText= 'کد دریافت شده از مشتری را وارد کنید';
   static const String submitCodeButton= 'تایید';
   static const String invalidCode = 'کد نادرست است';
+  static const String loginButton = 'ورود';
+  static const String emailFieldHint = 'ایمیل خود را وارد کنید';
+  static const String passwordFieldHint = 'رمزعبور خود را وارد کنید';
 
 }

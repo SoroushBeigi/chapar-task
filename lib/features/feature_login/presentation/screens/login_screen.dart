@@ -1,4 +1,6 @@
 import 'package:chapar_task/core/params/login_params.dart';
+import 'package:chapar_task/core/utils/constants.dart';
+import 'package:chapar_task/core/utils/theme.dart';
 import 'package:chapar_task/core/widgets/snackbar.dart';
 import 'package:chapar_task/features/feature_login/presentation/bloc/login_bloc.dart';
 import 'package:chapar_task/features/feature_login/presentation/bloc/login_status.dart';
@@ -106,14 +108,14 @@ class _LoginScreenState extends State<_LoginScreen> {
                         ),
                         Field(
                           controller: _emailController,
-                          hint: 'Enter your email',
+                          hint: Constants.emailFieldHint,
                           prefixIconData: Icons.email,
                           isObscure: false,
                         ),
                         SizedBox(height: 1.h,),
                         Field(
                           controller: _passwordController,
-                          hint: 'Enter your password',
+                          hint: Constants.passwordFieldHint,
                           isObscure: true,
                           prefixIconData: Icons.password,
                         ),
@@ -143,7 +145,7 @@ class _LoginScreenState extends State<_LoginScreen> {
                                       strokeWidth: 2,
                                     ));
                               } else {
-                                return const Text('Login');
+                                return Text(Constants.loginButton,style: AppTheme.lightTheme.textTheme.bodyMedium,);
                               }
                             }),
                           ),

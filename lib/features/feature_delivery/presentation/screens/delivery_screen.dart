@@ -5,7 +5,6 @@ import 'package:chapar_task/features/feature_delivery/presentation/widgets/addre
 import 'package:chapar_task/features/feature_delivery/presentation/widgets/details_card.dart';
 import 'package:chapar_task/features/feature_delivery/presentation/widgets/functions_card.dart';
 import 'package:chapar_task/features/feature_delivery/presentation/widgets/pin_card.dart';
-import 'package:chapar_task/features/feature_delivery/presentation/widgets/pin_input.dart';
 import 'package:chapar_task/features/feature_list/domain/entities/delivery.dart';
 import 'package:chapar_task/injections.dart';
 import 'package:flutter/material.dart';

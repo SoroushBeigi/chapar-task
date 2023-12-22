@@ -35,7 +35,6 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   }
 
   Future<void> _call(CallEvent event, Emitter<ListState> emit) async {
-    //TODO: make a service 
     final Uri launchUri = Uri(
       scheme: 'tel',
       path: event.phoneNumber,

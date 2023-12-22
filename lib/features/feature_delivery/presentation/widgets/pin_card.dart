@@ -23,7 +23,7 @@ class PinCard extends StatelessWidget {
           SizedBox(
             width: 30.w,
             child: ElevatedButton(
-                onPressed: ()=>context.pop(),
+                onPressed: ()=> context.pop(),
                 child: const Text(Constants.submitCodeButton)),
           )
         ],

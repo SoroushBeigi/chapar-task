@@ -145,7 +145,7 @@ class _LoginScreenState extends State<_LoginScreen> {
                                       strokeWidth: 2,
                                     ));
                               } else {
-                                return Text(Constants.loginButton,style: AppTheme.lightTheme.textTheme.bodyMedium,);
+                                return Text(Constants.loginButton,style: AppTheme.lightTheme.textTheme.displayMedium,);
                               }
                             }),
                           ),

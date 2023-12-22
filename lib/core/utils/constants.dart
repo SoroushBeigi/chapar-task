@@ -7,5 +7,8 @@ class Constants{
   static const String connectionError = 'Connection Error!';
   static const String invalidEmail = 'Please enter a valid email';
   static const String shortPassword= 'Password must be at least 4 characters long';
+  static const String unknown = 'Unkown';
+  static const String unknownAddress = 'Unkown Address!';
+  static const String cantLoad = 'Could not load the data. Please try again!';
 
 }

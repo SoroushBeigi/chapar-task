@@ -1,4 +1,6 @@
 import 'package:chapar_task/features/feature_list/presentation/bloc/list_bloc.dart';
+import 'package:chapar_task/features/feature_list/presentation/bloc/list_status.dart';
+import 'package:chapar_task/features/feature_list/presentation/widgets/tile.dart';
 import 'package:chapar_task/injections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +35,30 @@ class _ListScreenState extends State<_ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const Column(children: []),
+      body: BlocBuilder<ListBloc, ListState>(
+        buildWhen: (previous, current) =>
+            previous.listStatus != current.listStatus,
+        builder: (context, state) {
+          if (state.listStatus is ListLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state.listStatus is ListError) {
+            return Center(
+              child: Text((state.listStatus as ListError).error),
+            );
+          }
+          //ListView works better with limited, small data but I'm using ListView.builder here,
+          //Assuming that the data can potentially grow
+          return ListView.builder(
+            itemCount: BlocProvider.of<ListBloc>(context).deliveryList.length,
+            itemBuilder: (context, index) => Tile(
+                delivery:
+                    (state.listStatus as ListCompleted).deliveryList[index]),
+          );
+        },
+      ),
     );
   }
 }

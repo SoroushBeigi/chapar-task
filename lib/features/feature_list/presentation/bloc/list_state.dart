@@ -1,5 +1,12 @@
 part of 'list_bloc.dart';
 
-sealed class ListState {}
+class ListState {
+  final ListStatus listStatus;
+  ListState({required this.listStatus});
 
-final class ListInitial extends ListState {}
+  ListState copyWith({ListStatus? newStatus}) {
+    return ListState(
+      listStatus: newStatus ?? listStatus,
+    );
+  }
+}

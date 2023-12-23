@@ -4,7 +4,7 @@ import 'package:chapar_task/injections.dart';
 import 'package:flutter/material.dart';
 
 
-//If the users have already logged in, we will 
+//If the users have already logged in, we will skip the login page and go to the list screen 
 Future<bool> isLoggedIn() async {
   StorageService storageProvider = locator();
   String? token = await storageProvider.readToken();
